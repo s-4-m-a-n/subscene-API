@@ -1,0 +1,8 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+
+beautifulsoup4=4.9.0=py38_0
+requests=2.23.0=py38_0
+setuptools=46.1.3=py38_0
+pyparsing=2.4.6=py_0
