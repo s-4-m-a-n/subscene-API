@@ -8,9 +8,9 @@ def main():
 
 	parser.add_argument("-v","--version",help="display version",action="store_true")
 
-	parser.add_argument("-t","--title",default=None,type=str,help="enter the movie title")
+	parser.add_argument("-t","--title",default=None,type=str.lower,help="enter the movie title")
 	parser.add_argument("-y","--year",type=str,help="enter the released year")
-	parser.add_argument("-lng","--language",type=str,default="English",choices=["English","Arabic"],help="enter any language from choice")
+	parser.add_argument("-lng","--language",type=str.lower,default="english",choices=["english","arabic","albanian","arabic","bengali","turkish","spanish","swedish","thai","slovenian","russian","portuguese","malay","farsi/persian"],help="enter any language from choice")
 	args = parser.parse_args()
 
 	if args.version:
