@@ -109,7 +109,7 @@ To get the list of available subtitles along with download links, try :
   ```
 
 ## Developement:
-   Contibuters of all experience levels are warmed welcomed to be the part of the subscene API community.The community goals are to be helpful,welcoming,effective.
+   Contibuters of all experience levels are warmly welcomed to be the part of the subscene API community.The community goals are to be helpful,welcoming,effective.
    #### important links:
   - official source code repo : [https://github.com/s-4-m-a-n/subscene-API](https://github.com/s-4-m-a-n/subscene-API)
   - Download release : [https://pypi.org/project/subsceneAPI/](https://pypi.org/project/subsceneAPI/)<br/>
