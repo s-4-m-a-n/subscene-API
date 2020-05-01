@@ -2,11 +2,18 @@
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source-150x25.png?v=103)](https://github.com/s-4-m-a-n) 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)<br/>
-![versions](https://img.shields.io/pypi/pyversions/pybadges.svg)
 
-subscene API also known as subtitle API is an unofficial API of [subscene subtitle provider](https://www.subscene.com/) which is written in python3 by using web scrapping tools and techniques.This api allows you to fetch subtitles list,download links as well as subtitles(in ZIP format) on the basis of the movie title and other parameters that are discribed below in the documentation section.<br/><br/>
+
+subscene API also known as subtitle API is an unofficial API of [subscene subtitle provider](https://www.subscene.com/) which is written in python3 by using web scrapping tools and techniques.This api allows you to fetch subtitles list,download links as well as subtitles(in ZIP format) on the basis of the movie's title and other parameters (they are discribed below in the [Usage](#usage) section).<br/><br/>
 
 ## [:small_blue_diamond:](https://github.com/s-4-m-a-n)<ins>How to install<ins> ?
+#### Dependencies :
+  Subscene API requires:
+   - python (>=3.7)
+   - requests (==2.23.0)
+   - beautifulsoup4 (==4.9.0)
+  
+    
    ***below given code works in both terminal and cmd***:heavy_check_mark:
       It can be installed using [pip](https://pypi.org/project/subsceneAPI/)
 ``` 
@@ -26,17 +33,17 @@ subscene API also known as subtitle API is an unofficial API of [subscene subtit
   $  subsceneAPI --version
 
 ```
-For sucessiful installation the expected output is :
+For successful installation, the expected output is :
 ```
   $  subscene-API 0.1
 
 ``` 
 ## <ins>Usage<ins>:
   subscene API can be use both from command line and as a python package.
-  Command line is not recommended here because it is just for testing purpose and all the features of the package are not included in CLI version. This API can be used for developing subtitle downloader and any other web based project.
+  Command line is not recommended here because it is just for testing purpose and all the features of the package are not included in CLI version. This API can be useful for developing subtitle downloader and any other web based project which includes subtitle information.
   
 ### :computer: Command Line Usage:
-All the commands for subscene API can be found using help flag.
+All the commands for subscene API can be found using ***help*** flag.
 ```
   $  subsceneAPI -h
     OR
@@ -63,15 +70,52 @@ To get the list of available subtitles along with download links, try :
       create an instance of subscene object by using function : 
       
   ```python  
-       search(title="<movie name>",year="<yrs>,language="<language>",limit="<no of subtitles that you want>")
+      search(title="<movie name>",year="<yrs>,language="<language>",limit="<no of subtitles that you want>")
   ```
-    For instance , 
+  :heavy_exclamation_mark:Note, the title is mandatory but not the limit and year.Although,year argument should be pass for more accurate and expected result.In addition, the default value for limit is 1 and all other possible values are positive integers and 'all'. With the value 'all', every available subtitles' information will be fetched.
+  
+   For instance , 
   ```python
     import subsceneAPI
+    # or more ofthen,
     from subsceneAPI import subtitle    
     obj = subtitle.search(title="extraction",year="2020",language="english",limit="1")
  ```
-  
+ ### A simple implementation  :
+ ```python
+ >>>   from subsceneAPI import subtitle
+ >>>   sub = subtitle.search(title="extraction",year="2020",language="english",limit="2")
+ >>>   print(sub.ZIPlinks) # or obj.showZIPlinks()
+ 
+ [('후아유 학교 2015.E01~E16.HDTV.H264.720p-WITH ',
+  'https://www.subscene.com/subtitles/arabic-text/PU109MKIN052gH-c1GWyOCfTWLMLKmlfMrQXJcMMwO6b288LtEhtMIfkExgzB7hs8R0xZVR460THHwMT1PZ4iOPs6Vh_BjVhUJUfUxTc9yW8wCJ_tUbDzkpFsw4ofmIL0'),
+ ('Who.Are.You.School-2015.E02-16.END.XviD-WITH-iPOP ',
+  'https://www.subscene.com/subtitles/arabic-text/EgiL6LXr7Kp3bTtOT9fezovIu-6a5NcuPm66f8JPgPEP9HYHdM3yCXr9pQME2-hTCZeiPHusemyNgyVxVcW9qp6hmY3GCPJxXPuFBDWmb4XP58RNtbs8Gkij9EBxBiuv0')]
+ ```
+  obj.ZIPlinks 
+  - contains the list of tuples of subtitle name and the download link of ZIPPed .srt file
+ 
+ ### To download ZIP files:
+   - download in current directory:
+  ```python
+    >>> sub.downloadZIP()
+  ```
+  - download at any absolute path:
+   ```python
+    >>> sub.downloadZIP(path="<abs path>")
+  ```
+
+## Developement:
+   Contibuters of all experience levels are warmed welcomed to be the part of the subscene API community.The community goals are to be helpful,welcoming,effective.
+   #### important links:
+  - official source code repo : [https://github.com/s-4-m-a-n/subscene-API](https://github.com/s-4-m-a-n/subscene-API)
+  - Download release : [https://pypi.org/project/subsceneAPI/](https://pypi.org/project/subsceneAPI/)<br/>
+   #### <ins>source code:<ins>
+   you can check the latest sources with the command :
+   ```bash
+          git clone https://github.com/s-4-m-a-n/subscene-API.git
+   ```
+   
 
 ## LICENSE:
   It is an open source project and is being licensed under MIT LICENSE - [click me](https://github.com/s-4-m-a-n/subscene-API/blob/master/LICENSE) to get to the license file for more details.
