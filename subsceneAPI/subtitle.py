@@ -40,7 +40,7 @@ class Subscene:
 								try:
 									if (self.__linkToSub == "not-found"):
 										raise Exception("404 not found")
-								except ValueError as e:
+								except Exception as e:
 									print("Searched movie not found ")
 									
 							
