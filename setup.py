@@ -6,7 +6,7 @@ def readme():
     return README
 setuptools.setup(
     name="subsceneAPI", 
-    version="0.1",
+    version="0.2",
     author="Suman Dhakal",
     author_email="dhakalsumn739@gmail.com",
     description="python3 subscene api wrapper",
