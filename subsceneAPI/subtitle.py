@@ -30,35 +30,34 @@ class Subscene:
 								return BeautifulSoup(self.__htmlResponse,'lxml')
 				
 				def __setup(self): 
-								self.Domain = "https://www.subscene.com" #home page
-								self.__pageSearch = "/subtitles/searchbytitle" # query page
-								self.__soupSearch =  self.__postHTML(self.Domain+self.__pageSearch) #subtitles 
-							
-						#         self.__linkToSub = self.__soupSearch.select_one(".title a").attrs["href"] #subtitle list page link
-								self.__linkToSub = self.__searchBestResult(self.__soupSearch)
-								
-								try:
-									if (self.__linkToSub == "not-found"):
-										raise Exception("404 not found")
-								except Exception as e:
-									print("Searched movie not found ")
-									
-							
-								self.__subtitleResponse = self.__getHTML(self.Domain+self.__linkToSub)
-								
-								self.__getSubList(self.__subtitleResponse,self.args['language'])
-								
-								self.__getZIPlinks() # array of  absolute(full) download url  
+						        self.__Domain = "https://www.subscene.com" #home page
+						        self.__pageSearch = "/subtitles/searchbytitle" # query page
+						        self.__soupSearch =  self.__postHTML(self.__Domain+self.__pageSearch) #subtitles 
+						    
+						        self.__linkToSub = self.__searchBestResult(self.__soupSearch)
+						        
+						        if (self.__linkToSub == "not-found"):
+						            raise Exception("\nerror : !!!!!!Result not found!!!!\n make sure you have entered correct 'title' and 'year'")        
+						            
+						        
+						        self.__subtitleResponse = self.__getHTML(self.__Domain+self.__linkToSub)
+						        
+						        self.__getSubList(self.__subtitleResponse,self.args['language'])
+						        
+						        self.__getZIPlinks() # array of  absolute(full) download url  
    
-				def __searchBestResult(self,soupSearch):
-
-								searchList = soupSearch.select(".title a")
-								for item in searchList:
-									availableSubtitleName = (re.sub("\s|\(|\)","",(item.text).lower()))
-									if availableSubtitleName == self.args['title']+self.args['year']:
-										return (item.attrs['href'])            
-								return "not-found"
-				
+			    def __searchBestResult(self,soupSearch):
+			                searchList = soupSearch.select(".title a")
+			                searchedMovie = self.__Normalization(self.args['title']+self.args['year'])
+			                for item in searchList:
+			                    availableMovie = self.__Normalization(item.text)
+			                    if availableMovie == searchedMovie:
+			                        return (item.attrs['href'])            
+			                return "not-found"
+			            
+			    def __Normalization(self,string):
+			            return (re.sub("\s|\(|\)|-|\.","",(string).lower()))
+											
 				
 				def __getSubList(self,soup,lang):
 								link = list( x.attrs["href"] for x in soup.select(".a1 a"))
