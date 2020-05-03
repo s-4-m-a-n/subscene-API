@@ -1,11 +1,11 @@
-# SUBSCENE-API[:link:](https://github.com/s-4-m-a-n/subscene-API/tree/master/subsceneAPI)<br/>
+# SUBSCENE-API (v 0.2)[:link:](https://github.com/s-4-m-a-n/subscene-API/tree/master/subsceneAPI)<br/>
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source-150x25.png?v=103)](https://github.com/s-4-m-a-n) 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)<br/>
 [![Generic badge](https://img.shields.io/badge/python-3.7+-<COLOR>.svg)](https://www.python.org/)
-[![Generic badge](https://img.shields.io/badge/Pypi-v0.1-<COLOR>.svg)](https://pypi.org/project/subsceneAPI/)
-
+[![Generic badge](https://img.shields.io/badge/Pypi-v0.2-<COLOR>.svg)](https://pypi.org/project/subsceneAPI/)
+[![Generic badge](https://img.shields.io/badge/Python-Automation-<COLOR>.svg)](https://pypi.org/project/subsceneAPI/)
 
 subscene API also known as subtitle API is an unofficial API of [subscene subtitle provider](https://www.subscene.com/) which is written in python3 by using web scrapping tools and techniques.This api allows you to fetch subtitles list,download links as well as subtitles(in ZIP format) on the basis of the movie's title and other parameters (they are discribed below in the [Usage](#usage) section).<br/><br/>
 
@@ -38,7 +38,7 @@ subscene API also known as subtitle API is an unofficial API of [subscene subtit
 ```
 For successful installation, the expected output is :
 ```
-  $  subscene-API 0.1
+  $  subscene-API 0.2
 
 ``` 
 ## <ins>Usage<ins>:
