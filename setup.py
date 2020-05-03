@@ -1,9 +1,12 @@
 import setuptools
 
+
 def readme():
-    with open("README.md", "r") as fh:
+    with open("README.md", "r",encoding='utf-8') as fh:
         README = fh.read()
     return README
+
+
 setuptools.setup(
     name="subsceneAPI", 
     version="0.2",
@@ -20,7 +23,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    # packages = ["subscene_API","subscene_API.cli","subscene_API.subtitle"],
     packages = ["subsceneAPI"],
     include_package_data = True, 
     install_requires=[
