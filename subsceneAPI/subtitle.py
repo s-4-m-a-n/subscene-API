@@ -26,23 +26,38 @@ class Subscene:
 								return BeautifulSoup(self.__htmlResponse,'lxml')
 				
 				def __postHTML(self,url):
-								self.__htmlResponse =requests.post(url,data={'query':self.args['title']+" "+self.args['year']},headers=self.__header).text
+								self.__htmlResponse =requests.post(url,data={'query':self.args['title']},headers=self.__header).text
 								return BeautifulSoup(self.__htmlResponse,'lxml')
 				
 				def __setup(self): 
-
 								self.Domain = "https://www.subscene.com" #home page
 								self.__pageSearch = "/subtitles/searchbytitle" # query page
 								self.__soupSearch =  self.__postHTML(self.Domain+self.__pageSearch) #subtitles 
-				
-								self.__linkToSub = self.__soupSearch.select_one(".title a").attrs["href"] #subtitle list page link
+							
+						#         self.__linkToSub = self.__soupSearch.select_one(".title a").attrs["href"] #subtitle list page link
+								self.__linkToSub = self.__searchBestResult(self.__soupSearch)
 								
+								try:
+									if (self.__linkToSub == "not-found"):
+										raise Exception("404 not found")
+								except ValueError as e:
+									print("Searched movie not found ")
+									
+							
 								self.__subtitleResponse = self.__getHTML(self.Domain+self.__linkToSub)
 								
 								self.__getSubList(self.__subtitleResponse,self.args['language'])
 								
 								self.__getZIPlinks() # array of  absolute(full) download url  
-				
+   
+				def __searchBestResult(self,soupSearch):
+
+								searchList = soupSearch.select(".title a")
+								for item in searchList:
+									availableSubtitleName = (re.sub("\s|\(|\)","",(item.text).lower()))
+									if availableSubtitleName == self.args['title']+self.args['year']:
+										return (item.attrs['href'])            
+								return "not-found"
 				
 				
 				def __getSubList(self,soup,lang):
@@ -114,10 +129,10 @@ def dicToStr(**kwargs): # returing string of the dictionary type
 #------------ main function to be called----------------------------               
 def search(title=None,year ='',language="English",domain="subscene",limit='all'): # limit specifies nos. of subtitle to be fetched
 				try:
-								if title == None:
-												raise Exception("'title' cannot be None type ")
+						if title == None or year == None:
+							raise Exception("'title' and 'year' cannot be of None type ")
 				except ValueError as e :
-												print("value Error :" + repr(e))
+							print("value Error :" + repr(e))
 				
 				args = {'title':title,'year':year,'language':language,'domain':domain,'limit':limit}
 				return Subscene(**args)
