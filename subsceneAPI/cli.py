@@ -14,9 +14,9 @@ def main():
 	args = parser.parse_args()
 
 	if args.version:
-		print("subscene-API 0.1")
+		print("subscene-API 0.2")
 
-	elif args.title != None:
+	elif args.title != None :
 		obj = subtitle.search(title=args.title,year=args.year,language=args.language,limit=2)
 		print("obj  :")
 		print(obj)
