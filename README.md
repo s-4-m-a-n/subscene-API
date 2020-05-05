@@ -26,7 +26,7 @@ subscene API also known as subtitle API is an unofficial API of [subscene subtit
   since the current version is 0.1. You can write 
   
 ```
-  $  pip install subsceneAPI==0.1
+  $  pip install subsceneAPI==0.2
 
 ``` 
   To test if the installation was sucessiful,try:
